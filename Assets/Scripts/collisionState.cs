@@ -17,7 +17,6 @@ public class collisionState : MonoBehaviour {
 	private Color debugCollisionColor = Color.red;
 //	[HideInInspector]
 	private General general; // Colission State Script
-	private Rigidbody2D rb;
 
 	//------------------------------------------------------------------
 
@@ -25,7 +24,6 @@ public class collisionState : MonoBehaviour {
 	void Awake(){
 
 		general = GetComponent<General> ();
-		rb = GetComponent<Rigidbody2D> ();
 
 	}
 
@@ -59,7 +57,7 @@ public class collisionState : MonoBehaviour {
 
 		if (general.move.x != 0) {
 			onWall = Physics2D.OverlapCircle (pos, collisionRadius, groundLayer);
-		} else {
+        } else {
 			onWall = false;
 		}
 

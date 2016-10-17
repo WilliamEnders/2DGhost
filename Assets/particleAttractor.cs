@@ -7,15 +7,22 @@ using System.Collections;
 
 public class particleAttractor : MonoBehaviour {
 
-	public ParticleSystem pSys;
+	private ParticleSystem pSys;
 	public float attraction = 2.0f;
 	public bool worldSpaceParticles = false;
 
+    public Transform obj;
+
 	private ParticleSystem.Particle[] m_Particles;
 
-	void LateUpdate()
+    void Start() {
+        pSys = GetComponent<ParticleSystem>();
+        Destroy(gameObject, pSys.main.duration + pSys.main.startLifetime.constant);
+    }
+
+	void FixedUpdate()
 	{
-		if (pSys == null) {
+		if (pSys == null || obj == null) {
 			return;
 		}
 
@@ -28,7 +35,7 @@ public class particleAttractor : MonoBehaviour {
 		int numParticlesAlive = pSys.GetParticles(m_Particles);
 
 
-		Vector3 target = transform.position;		
+		Vector3 target = obj.position;		
 		if (!worldSpaceParticles) {
 			target = target - pSys.transform.position;
 		}
@@ -41,6 +48,8 @@ public class particleAttractor : MonoBehaviour {
 
 		// Apply the particle changes to the particle system
 		pSys.SetParticles(m_Particles, numParticlesAlive);
+
+
 
 	}
 

@@ -3,9 +3,9 @@ using System.Collections;
 
 public class General : MonoBehaviour {
 
-	//------------------------------------------------------------------
-
-	private Rigidbody2D rb; // Rigidbody
+    //------------------------------------------------------------------
+    [HideInInspector]
+    public Rigidbody2D rb; // Rigidbody
 	[HideInInspector]
 	public Vector2 move; // Left Stick
 
@@ -19,7 +19,7 @@ public class General : MonoBehaviour {
 	protected int jumpsRemaining = 0;
 	private float slideSpeed = 3;
 	private float direction;
-	private collisionState coll;
+	public collisionManager coll;
 
 	[Header("Movement")]
 	public bool canMove = true;
@@ -36,12 +36,14 @@ public class General : MonoBehaviour {
 
 	public bool dead;
 
+    public GameObject ghostPart;
+
 	//------------------------------------------------------------------
 
 	void Start () {
 		dead = false;
 		rb = GetComponent<Rigidbody2D> ();
-		coll = GetComponent<collisionState> ();
+		//coll = GetComponent<collisionState> ();
 
 	}
 
@@ -160,7 +162,9 @@ public class General : MonoBehaviour {
 	}
 
 	public void CreateGhost(int type){
-		Instantiate (ghost,transform.position + Vector3.up,Quaternion.identity);
+		GameObject spook =  Instantiate (ghost,transform.position + Vector3.up,Quaternion.identity) as GameObject;
+        GameObject particles = Instantiate(ghostPart,transform.position,transform.rotation) as GameObject;
+        particles.GetComponent<particleAttractor>().obj = spook.transform;
 		this.enabled = false;
 	}
 
