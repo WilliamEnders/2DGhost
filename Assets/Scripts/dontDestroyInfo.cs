@@ -15,11 +15,17 @@ public class dontDestroyInfo : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        skipCut = false;
+       // skipCut = false;
         DontDestroyOnLoad(gameObject);
         camMove = GetComponent<cameraMove>();
         fade = GetComponent<fadeIn>();
         cutScene = GetComponent<cutSceneManager>();
+    }
+
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.P)) {
+            fade.Reload();
+        }
     }
 
     void OnEnable() {

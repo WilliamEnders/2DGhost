@@ -29,7 +29,6 @@ public class generalMovement : MonoBehaviour {
         [Header("Wall Jump")]
         public bool canWallJump;
         public float slideSpeed = 3;
-        [HideInInspector]
         public int direction;
     }
     [System.Serializable]
@@ -63,6 +62,7 @@ public class generalMovement : MonoBehaviour {
     //------------------------------------------------------------------
 
     void Start() {
+        coll.standing = true;
 		reallyDead = false;
         move.direction = 1;
         dead = false;
@@ -106,8 +106,8 @@ public class generalMovement : MonoBehaviour {
             Jump();
         }
 
-        if (coll.onWall) {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+        if (coll.onWall && coll.standing == false) {
+            rb.velocity = new Vector2(0, -move.slideSpeed);
         }
 
     }
@@ -174,5 +174,4 @@ public class generalMovement : MonoBehaviour {
         Camera.main.GetComponent<fadeIn>().Invoke("Reload",1f);
 		}
     }
-
 }

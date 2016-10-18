@@ -16,7 +16,7 @@ public class lavaKill : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D info){
 		if(info.transform.CompareTag("Player") || info.transform.CompareTag("Robot")){
-			info.GetComponent<generalMovement> ().Explode ();
+			info.GetComponentInParent<generalMovement> ().Explode ();
 		}
 	}
 }

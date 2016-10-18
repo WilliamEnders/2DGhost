@@ -20,6 +20,10 @@ public class fadeIn : MonoBehaviour {
         Fade(1f, 1f, 1);
     }
 
+    public void NextLevel() {
+        Fade(1f, 1f, 2);
+    }
+
     public void Fade(float to, float time, int change) {
         StartCoroutine(FadeTo(to, time, change));
     }

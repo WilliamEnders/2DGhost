@@ -16,7 +16,7 @@ public class cutSceneManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        isCutScene = false;
+            isCutScene = false;
         txt = GetComponentInChildren<Text>();
         cam = GetComponent<cameraMove>();
         info = GetComponent<dontDestroyInfo>();
@@ -24,6 +24,8 @@ public class cutSceneManager : MonoBehaviour {
 	}
 
     public void StartCutScene() {
+
+        txt.transform.parent.gameObject.SetActive(true);
         isCutScene = true;
         if (cam.player) {
             cam.player.GetComponent<generalMovement>().move.canMove = false;
@@ -36,7 +38,7 @@ public class cutSceneManager : MonoBehaviour {
             player.move.canMove = true;
             cam.player = player.transform;
         }
-        enabled = false;
+        //enabled = false;
         txt.transform.parent.gameObject.SetActive(false);
         info.skipCut = true;
     }
