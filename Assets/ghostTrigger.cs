@@ -21,7 +21,7 @@ public class ghostTrigger : MonoBehaviour {
     }
 
     void OnTriggerStay2D(Collider2D info) {
-        if (info.CompareTag("Player")) {
+		if (info.CompareTag("Player") || info.CompareTag("Robot")) {
             canEnter = true;
             infoGen = info.GetComponentInParent<generalMovement>();
         }

@@ -32,14 +32,15 @@ public class fadeIn : MonoBehaviour {
             yield return null;
         }
         yield return new WaitForSeconds(0.5f);
+
+		Scene curScene = SceneManager.GetActiveScene();
+
         if (scene == 1) {
-            Scene curScene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(curScene.buildIndex);
             print("reloading scene!");
 
         }
         if (scene == 2) {
-            Scene curScene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(curScene.buildIndex + 1);
 
         }

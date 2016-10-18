@@ -61,7 +61,7 @@ public class robotMovement : MonoBehaviour {
 
     void DoIKill() {
         if (hit) {
-            if (hit.transform.CompareTag("Player") && !jobDone) {
+			if (hit.transform.CompareTag("Player") && !jobDone && !hit.transform.GetComponent<generalMovement>().dead) {
                     Invoke("Dead", 2f);
                     kill = true;
                     jobDone = true;

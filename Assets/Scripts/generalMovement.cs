@@ -55,6 +55,7 @@ public class generalMovement : MonoBehaviour {
     public bool falling;
     public bool deathFall;
     public bool dead;
+	public bool reallyDead;
     public bool gameOver;
 
     private int reverse;
@@ -62,6 +63,7 @@ public class generalMovement : MonoBehaviour {
     //------------------------------------------------------------------
 
     void Start() {
+		reallyDead = false;
         move.direction = 1;
         dead = false;
         rb = GetComponent<Rigidbody2D>();
@@ -165,9 +167,12 @@ public class generalMovement : MonoBehaviour {
     }
 
     public void Explode() {
+		if(!reallyDead){
+		reallyDead = true;
         gameOver = true;
         move.canMove = false;
         Camera.main.GetComponent<fadeIn>().Invoke("Reload",1f);
+		}
     }
 
 }
